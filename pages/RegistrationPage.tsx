@@ -49,7 +49,7 @@ const RegistrationPage: React.FC = () => {
 
   // Validation function
   const validateForm = () => {
-    let errors: FormErrors = {};
+    const errors: FormErrors = {};
 
     if (!formState.company) errors.company = 'Company is required';
     if (!formState.countryCity) errors.countryCity = 'Country/City is required';
