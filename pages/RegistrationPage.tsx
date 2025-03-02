@@ -164,7 +164,6 @@ const RegistrationPage: React.FC = () => {
       toast.success('Payment successful! Thank you for registering!');
     } catch (error) {
       console.error('Error:', error);
-      toast.error('An error occurred. Please try again.');
     }
   };
   
