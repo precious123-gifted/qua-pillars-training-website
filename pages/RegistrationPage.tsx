@@ -1,9 +1,9 @@
- "use client";
+"use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
+import 'react-toastify/dist/ReactToastify.css';
 import { processPaystackPayment } from '../lib/paystack';
 
 // Define interfaces for the state and form errors
@@ -17,6 +17,7 @@ interface FormState {
   refundPolicy: boolean;
   isStudent: boolean;
   dietaryRequest: string;
+  isOtherDietaryRequest: boolean;
   studentId: File | null;
   paymentAmount: number;
 }
@@ -39,15 +40,24 @@ const RegistrationPage: React.FC = () => {
     refundPolicy: false,
     isStudent: false,
     dietaryRequest: '',
+    isOtherDietaryRequest: false,
     studentId: null,
-    paymentAmount: 10000, // Default payment amount
+    paymentAmount: 10000,
   });
 
   const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const publicKey = "pk_test_39ffa3598618d31a91c17b97d0897ed21ffb7d83"; // Replace with your actual public key
+  const publicKey = "pk_test_39ffa3598618d31a91c17b97d0897ed21ffb7d83";
 
-  // Validation function
+  const dietaryOptions = [
+    { value: 'Vegetarian', label: 'Vegetarian' },
+    { value: 'Vegan', label: 'Vegan' },
+    { value: 'Gluten-Free', label: 'Gluten-Free' },
+    { value: 'Lactose-Free', label: 'Lactose-Free' },
+    { value: 'Pescetarian', label: 'Pescetarian' },
+  ];
+
   const validateForm = () => {
     const errors: FormErrors = {};
 
@@ -64,6 +74,23 @@ const RegistrationPage: React.FC = () => {
     return Object.keys(errors).length === 0;
   };
 
+  const isFormValid = () => {
+    return (
+      formState.company &&
+      formState.countryCity &&
+      formState.email &&
+      formState.phone &&
+      formState.firstName &&
+      formState.lastName &&
+      formState.refundPolicy &&
+      (!formState.isStudent || formState.studentId)
+    );
+  };
+
+  useEffect(() => {
+    setIsButtonDisabled(!isFormValid());
+  }, [formState]);
+
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setFormState((prevState) => ({ ...prevState, studentId: event.target.files![0] }));
@@ -72,16 +99,53 @@ const RegistrationPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+  
     if (!validateForm()) {
       toast.error('Please fill in all required fields and correct errors.');
       return;
     }
-
+  
     try {
+      // Convert the file to base64 if it exists
+      let studentIdBase64 = null;
+      let studentFileName = null;
+      if (formState.isStudent && formState.studentId) {
+        studentIdBase64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(formState.studentId!);
+          reader.onload = () => resolve(reader.result?.toString().split(',')[1]); // Extract base64 part
+          reader.onerror = (error) => reject(error);
+        });
+        studentFileName = formState.studentId.name; // Get the original file name
+      }
+  
+      // Send form data to the API route
+      const emailResponse = await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formData: {
+            ...formState,
+            studentId: studentIdBase64
+              ? {
+                  name: studentFileName, // Send the original file name
+                  content: studentIdBase64, // Send the base64-encoded file
+                }
+              : null,
+          },
+        }),
+      });
+  
+      if (!emailResponse.ok) {
+        throw new Error('Failed to send email.');
+      }
+  
+      // Process Paystack payment
       const paymentResponse = await processPaystackPayment({
         email: formState.email,
-        amount: formState.paymentAmount * 100, // Amount in kobo
+        amount: formState.paymentAmount * 100,
         metadata: {
           custom_fields: [
             { display_name: 'First Name', variable_name: 'firstName', value: formState.firstName },
@@ -95,15 +159,15 @@ const RegistrationPage: React.FC = () => {
         },
         publicKey,
       });
-
+  
       console.log('Payment successful!', paymentResponse);
       toast.success('Payment successful! Thank you for registering!');
     } catch (error) {
-      console.error('Payment error:', error);
-      toast.error('An error occurred during payment.');
+      console.error('Error:', error);
+      toast.error('An error occurred. Please try again.');
     }
   };
-
+  
   return (
     <div className="font-[family-name:var(--font-kanit)] bg-[#f0f0f0] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
@@ -269,23 +333,7 @@ const RegistrationPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Dietary Request */}
-            <div>
-              <label htmlFor="dietaryRequest" className="block text-sm font-medium text-gray-700">
-                Dietary Request
-              </label>
-              <div className="mt-1">
-                <textarea
-                  id="dietaryRequest"
-                  rows={3}
-                  className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  value={formState.dietaryRequest}
-                  onChange={(e) => setFormState((prevState) => ({ ...prevState, dietaryRequest: e.target.value }))}
-                />
-              </div>
-            </div>
-
-            {/* Upload Student ID */}
+            {/* Upload Student ID (directly under "I am a student") */}
             {formState.isStudent && (
               <div>
                 <label className="block text-sm font-medium text-gray-700">
@@ -325,6 +373,77 @@ const RegistrationPage: React.FC = () => {
               </div>
             )}
 
+            {/* Dietary Request */}
+            <div>
+              <label htmlFor="dietaryRequest" className="block text-sm font-medium text-gray-700">
+                Dietary Request
+              </label>
+              <div className="mt-1">
+                {/* Predefined dietary options */}
+                <div className="space-y-2">
+                  {dietaryOptions.map((option) => (
+                    <div key={option.value} className="flex items-center">
+                      <input
+                        type="radio"
+                        id={option.value}
+                        name="dietaryRequest"
+                        value={option.value}
+                        checked={formState.dietaryRequest === option.value}
+                        onChange={(e) =>
+                          setFormState((prevState) => ({
+                            ...prevState,
+                            dietaryRequest: e.target.value,
+                            isOtherDietaryRequest: false, // Reset "Others" checkbox
+                          }))
+                        }
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                      />
+                      <label htmlFor={option.value} className="ml-2 text-sm text-gray-700">
+                        {option.label}
+                      </label>
+                    </div>
+                  ))}
+                  {/* Others checkbox */}
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="otherDietaryRequest"
+                      checked={formState.isOtherDietaryRequest}
+                      onChange={(e) =>
+                        setFormState((prevState) => ({
+                          ...prevState,
+                          isOtherDietaryRequest: e.target.checked,
+                          dietaryRequest: e.target.checked ? '' : formState.dietaryRequest, // Clear dietaryRequest if "Others" is unchecked
+                        }))
+                      }
+                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                    />
+                    <label htmlFor="otherDietaryRequest" className="ml-2 text-sm text-gray-700">
+                      Others
+                    </label>
+                  </div>
+                </div>
+                {/* Textarea for custom dietary request */}
+                {formState.isOtherDietaryRequest && (
+                  <div className="mt-2">
+                    <textarea
+                      id="customDietaryRequest"
+                      rows={3}
+                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      value={formState.dietaryRequest}
+                      onChange={(e) =>
+                        setFormState((prevState) => ({
+                          ...prevState,
+                          dietaryRequest: e.target.value,
+                        }))
+                      }
+                      placeholder="Please specify your dietary request"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
             {/* Display Payment Amount */}
             <div className="text-center">
               <p className="text-lg font-semibold">
@@ -358,6 +477,7 @@ const RegistrationPage: React.FC = () => {
                   toast.warn('Payment window closed.');
                 }}
                 className="w-full sm:w-auto flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                disabled={isButtonDisabled} // Disable button based on form validity
               />
             </div>
           </form>
