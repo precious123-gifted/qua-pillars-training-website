@@ -48,7 +48,7 @@ const RegistrationPage: React.FC = () => {
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const publicKey = "pk_test_39ffa3598618d31a91c17b97d0897ed21ffb7d83";
+  const publicKey = "pk_live_7192e8e16a397a9d25c9924df6d8406b2e5d5422";
 
   const dietaryOptions = [
     { value: 'Vegetarian', label: 'Vegetarian' },
