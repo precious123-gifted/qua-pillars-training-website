@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'export', // Enable static export
   distDir: 'out', 
-  basePath: '/training',
+  basePath: '/',
   images: {
-    unoptimized: true, // Disable Image Optimization API
+    unoptimized: false, // Disable Image Optimization API
   },
 };
 
