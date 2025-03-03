@@ -45,7 +45,7 @@ export default function Navigation() {
 
       {/* Mobile Sidebar */}
       <div
-        className="fixed inset-0 bg-[#0d1424] bg-opacity-95 z-50 landscape:hidden"
+        className="fixed inset-0 bg-[#283b63] bg-opacity-95 z-50 landscape:hidden"
         style={{
           transform: isSidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
           transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
