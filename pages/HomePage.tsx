@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <div className='home-page w-full landscape:h-[100vh] bg-[#e9ebf0] font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
+    <div className='home-page w-full landscape:h-[110vh] bg-[#e9ebf0] font-[family-name:var(--font-kanit)] grid place-items-center   '>
     <div className="content w-[95%]  overflow-hidden landscape:space-y-[1vw] portrait:space-y-[6vw] ">
 {/* header banner */}
 <header
@@ -14,7 +14,7 @@ export default function HomePage() {
     backgroundPosition: 'center', // Center the image
     backgroundRepeat: 'no-repeat', // Prevent the image from repeating
   }}
-className='flex justify-center pt-[4vw]  h-[60vh]  text-[#b8c2d8] rounded-sm portrait:space-x-4'>
+className='flex justify-center pt-[0vw]  h-[60vh]  text-[#b8c2d8] rounded-sm portrait:space-x-4'>
 
 <div className="writeup flex flex-col space-y-2  items-center portrait:text-center w-full">
 <h1 className='landscape:text-[3vw] portrait:text-[6vw] bg-[#283b63] w-full h-[6vw] text-center mb-[6vw]'>Evidence-Based Medicines Research & Pharmacovigilance Training</h1>
@@ -26,7 +26,7 @@ className='flex justify-center pt-[4vw]  h-[60vh]  text-[#b8c2d8] rounded-sm por
 
 </header>
 {/* why attend */}
-<section className='text-[#3b4a6e] flex flex-col items-center landscape:text-[1.2vw] portrait:text-center mt-[4vw] mb-[6vw]'>
+<section className='text-[#3b4a6e] flex flex-col items-center landscape:text-[1.2vw] portrait:text-center mt-[4vw] '>
 <h3 className='landscape:text-[1.6vw] mb-4'>Why Attend</h3>
 <p>This Evidence-Based Medicines Research and Pharmacovigilance Training offers a comprehensive and hands-on learning experience inthe rapidly evolving fields of medicine research and pharmacovigilance. It provides an excellent opportunity for professionals to stayinformed about study design, ethical considerations, patient safety, and regulatory practices. Led by experts, the program exploresmedicine research and pharmacovigilance principles and practices. Participants will gain insights into adverse event reporting,medication errors, and safety monitoring for vaccines, biologics, and herbal medicines. The training also covers practical projectmanagement and publication writing skills, including the use of AI. A key feature of this training is the roundtable discussion onmedicines research in Africa, where professionals will share insights, lessons learned, and future directions. This program is ideal forresearchers, healthcare professionals, and regulatory authorities who aim to enhance their skills, expand their professional network,and contribute to advancing medicines research and pharmacovigilance.</p>
 </section>
