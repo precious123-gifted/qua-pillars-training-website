@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function TravelPage() {
   return (
-    <div className='travel-page w-full  font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
+    <div className='travel-page w-full bg-[#CED8ED] font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
     <div className="content w-[95%]  overflow-hidden landscape:space-y-[1vw] portrait:space-y-[6vw]">
 
 {/* Travel*/}
-<section className='text-[#0d1424] h-[100vh] flex flex-col items-center landscape:text-[1.2vw] portrait:text-center'>
+<section className='text-[#3b4a6e]  h-[100vh] flex flex-col items-center landscape:text-[1.2vw] portrait:text-center'>
 <h3 className='landscape:text-[1.6vw] mb-4'>Travel and Accomodations</h3>
 <h4 className='landscape:text-[1.6vw] mb-4'>Visas</h4>
 <p>

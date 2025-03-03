@@ -14,7 +14,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className="content font-[family-name:var(--font-kanit)] landscape:text-[1.3vw] w-full grid place-items-center bg-[#0d1424] overflow-hidden text-[#CED8ED] landscape:h-[10vh] portrait:h-[12vh]">
+    <div className="content font-[family-name:var(--font-kanit)] landscape:text-[1.3vw] w-full grid place-items-center bg-[#283b63] overflow-hidden text-[#CED8ED] landscape:h-[10vh] portrait:h-[12vh]">
       <nav className="flex justify-between w-[95%] items-center">
         {/* Logo */}
         <Link href="/" className="landscape:w-[10%] portrait:w-[30%]">

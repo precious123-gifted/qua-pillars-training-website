@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kanit.variable} ${koho.variable} antialiased w-[100vw] overflow-x-hidden`}
+        className={`${kanit.variable} ${koho.variable} antialiased w-[100vw] overflow-x-hidden bg-[#CED8ED] `}
       >
         <NavBar />
         {children}

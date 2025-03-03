@@ -168,11 +168,11 @@ const RegistrationPage: React.FC = () => {
   };
   
   return (
-    <div className="font-[family-name:var(--font-kanit)] bg-[#f0f0f0] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#CED8ED] text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-        <div className="bg-gray-50 py-4 px-6 border-b border-gray-200">
-          <h2 className="text-2xl font-semibold text-gray-800">Registration</h2>
+      <div className="max-w-3xl mx-auto  rounded-lg shadow-xl overflow-hidden">
+        <div className=" py-4 px-6 border-b border-gray-200">
+          <h2 className="text-2xl font-semibold text-[#3b4a6e] ">Registration</h2>
         </div>
 
         <div className="p-6">
@@ -187,7 +187,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="company"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ${formErrors.company ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.company ? 'border-red-500' : ''}`}
                   value={formState.company}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, company: e.target.value }))}
                 />
@@ -205,7 +205,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="countryCity"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ${formErrors.countryCity ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.countryCity ? 'border-red-500' : ''}`}
                   value={formState.countryCity}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, countryCity: e.target.value }))}
                 />
@@ -223,7 +223,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="email"
                   id="email"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ${formErrors.email ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.email ? 'border-red-500' : ''}`}
                   value={formState.email}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, email: e.target.value }))}
                 />
@@ -241,7 +241,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="tel"
                   id="phone"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ${formErrors.phone ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.phone ? 'border-red-500' : ''}`}
                   value={formState.phone}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, phone: e.target.value }))}
                 />
@@ -259,7 +259,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="firstName"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ${formErrors.firstName ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.firstName ? 'border-red-500' : ''}`}
                   value={formState.firstName}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, firstName: e.target.value }))}
                 />
@@ -277,7 +277,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="lastName"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md ${formErrors.lastName ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.lastName ? 'border-red-500' : ''}`}
                   value={formState.lastName}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, lastName: e.target.value }))}
                 />
@@ -291,7 +291,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   id="refundPolicy"
                   type="checkbox"
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600 rounded"
                   checked={formState.refundPolicy}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, refundPolicy: e.target.checked }))}
                 />
@@ -311,7 +311,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   id="student"
                   type="checkbox"
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600 rounded"
                   checked={formState.isStudent}
                   onChange={(e) => {
                     setFormState((prevState) => ({
@@ -339,7 +339,7 @@ const RegistrationPage: React.FC = () => {
                   Upload Your student ID or any other valid Document
                   {formErrors.studentId && <span className="text-red-500"> *</span>}
                 </label>
-                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-600 border-dashed rounded-md">
                   <div className="space-y-1 text-center">
                     <svg
                       className="mx-auto h-12 w-12 text-gray-400"
@@ -358,7 +358,7 @@ const RegistrationPage: React.FC = () => {
                     <div className="flex text-sm text-gray-600">
                       <label
                         htmlFor="file-upload"
-                        className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                        className="relative cursor-pointer  rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span>Choose file</span>
                         <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleFileUpload} />
@@ -395,7 +395,7 @@ const RegistrationPage: React.FC = () => {
                             isOtherDietaryRequest: false, // Reset "Others" checkbox
                           }))
                         }
-                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600"
                       />
                       <label htmlFor={option.value} className="ml-2 text-sm text-gray-700">
                         {option.label}
@@ -415,7 +415,7 @@ const RegistrationPage: React.FC = () => {
                           dietaryRequest: e.target.checked ? '' : formState.dietaryRequest, // Clear dietaryRequest if "Others" is unchecked
                         }))
                       }
-                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600 rounded"
                     />
                     <label htmlFor="otherDietaryRequest" className="ml-2 text-sm text-gray-700">
                       Others
@@ -428,7 +428,7 @@ const RegistrationPage: React.FC = () => {
                     <textarea
                       id="customDietaryRequest"
                       rows={3}
-                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md"
                       value={formState.dietaryRequest}
                       onChange={(e) =>
                         setFormState((prevState) => ({
@@ -445,7 +445,7 @@ const RegistrationPage: React.FC = () => {
 
             {/* Display Payment Amount */}
             <div className="text-center">
-              <p className="text-lg font-semibold">
+              <p className="text-lg font-semibold text-[#3b4a6e]">
                 Payment Amount: NGN {formState.paymentAmount.toLocaleString()}
               </p>
             </div>
