@@ -1,6 +1,5 @@
 import React from 'react'
 import headerImg from '../public/header-img.png'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function HomePage() {
