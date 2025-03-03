@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'export', // Enable static export
   distDir: 'out', 
-  basePath: '/',
+  basePath: '',
   images: {
     unoptimized: false, // Disable Image Optimization API
   },
