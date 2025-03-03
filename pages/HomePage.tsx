@@ -11,7 +11,7 @@ export default function HomePage() {
    style={{
     backgroundImage: `url(${headerImg.src})`, // Set the background image
     backgroundSize: 'cover', // Ensure the image covers the entire header 
-    backgroundPosition: 'bottom', // Center the image
+    backgroundPosition: 'center', // Center the image
     backgroundRepeat: 'no-repeat', // Prevent the image from repeating
   }}
 className='flex justify-center pt-[4vw]  h-[60vh]  text-[#b8c2d8] rounded-sm portrait:space-x-4'>
