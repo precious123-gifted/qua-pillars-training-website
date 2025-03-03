@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function TravelPage() {
   return (
-    <div className='travel-page w-full bg-[#CED8ED] font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
+    <div className='travel-page w-full bg-[#dce0ea] font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
     <div className="content w-[95%]  overflow-hidden landscape:space-y-[1vw] portrait:space-y-[6vw]">
 
 {/* Travel*/}

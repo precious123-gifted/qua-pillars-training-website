@@ -18,7 +18,7 @@ export default function Navigation() {
       <nav className="flex justify-between w-[95%] items-center">
         {/* Logo */}
         <Link href="/" className="landscape:w-[10%] portrait:w-[30%]">
-          <Image src={Logo} alt="qua pillars logo" className="rounded-sm" />
+          <Image src={Logo} alt="qua pillars logo" className="rounded-sm opacity-95" />
         </Link>
 
         {/* Desktop Menu */}

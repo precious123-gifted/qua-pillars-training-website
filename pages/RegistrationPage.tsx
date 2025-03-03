@@ -168,7 +168,7 @@ const RegistrationPage: React.FC = () => {
   };
   
   return (
-    <div className="bg-[#CED8ED] text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#dce0ea] text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <div className="max-w-3xl mx-auto  rounded-lg shadow-xl overflow-hidden">
         <div className=" py-4 px-6 border-b border-gray-200">

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <div className='home-page w-full h-[100vh] bg-[#CED8ED] font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
+    <div className='home-page w-full h-[100vh] bg-[#dce0ea] font-[family-name:var(--font-kanit)] grid place-items-center pt-[1vw] '>
     <div className="content w-[95%]  overflow-hidden landscape:space-y-[1vw] portrait:space-y-[6vw] ">
 {/* header banner */}
 <header
@@ -17,7 +17,7 @@ export default function HomePage() {
 className='flex justify-center items-center h-[60vh] bg-[#283b63] text-[#b8c2d8] rounded-sm portrait:space-x-4'>
 
 <div className="writeup flex flex-col space-y-2 pr-[1vw]">
-<h1 className='landscape:text-[2vw] portrait:text-[4vw]'>Evidence-Based Medicines Research & PharmacovigilanceTraining</h1>
+<h1 className='landscape:text-[2vw] portrait:text-[4vw] contrast-more:text-[#283b63]'>Evidence-Based Medicines Research & <span className='bg-[#283b63]'>Pharmacovigilance Training</span></h1>
 <p className='landscape:text-[1.4vw] portrait:text-[3vw]'>1-3 July 2025</p>
 <p className='landscape:text-[1.3vw] portrait:text-[3vw]'>Lagos, Nigeria</p>
 <Link href='/registration' className='landscape:w-[10vw] portrait:w-[25vw] text-center hover:bg-[#959fb6] landscape:text-[1.3vw] portrait:text-[4vw] py-2 cursor-pointer portrait:my-2 mt-[2vw] bg-[#CED8ED] text-[#0d1424] rounded-sm'>Register Now</Link>
