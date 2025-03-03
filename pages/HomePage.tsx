@@ -1,5 +1,5 @@
 import React from 'react'
-import headerImg from '../public/header-img.png'
+import headerImg from '../public/header-img.jpg'
 import Link from 'next/link'
 
 export default function HomePage() {
@@ -10,16 +10,16 @@ export default function HomePage() {
 <header
    style={{
     backgroundImage: `url(${headerImg.src})`, // Set the background image
-    backgroundSize: 'contain', // Ensure the image covers the entire header 
+    backgroundSize: 'cover', // Ensure the image covers the entire header 
     backgroundPosition: 'bottom', // Center the image
     backgroundRepeat: 'no-repeat', // Prevent the image from repeating
   }}
-className='flex justify-center pt-[4vw]  h-[60vh] bg-[#283b63] text-[#b8c2d8] rounded-sm portrait:space-x-4'>
+className='flex justify-center pt-[4vw]  h-[60vh]  text-[#b8c2d8] rounded-sm portrait:space-x-4'>
 
-<div className="writeup flex flex-col space-y-2 pr-[1vw] portrait:items-center portrait:text-center">
-<h1 className='landscape:text-[2vw] portrait:text-[6vw] '>Evidence-Based Medicines Research & <span className=''>Pharmacovigilance Training</span></h1>
-<p className='landscape:text-[1.4vw] portrait:text-[3vw] '>1-3 July 2025</p>
-<p className='landscape:text-[1.3vw] portrait:text-[3vw] '>Lagos, Nigeria</p>
+<div className="writeup flex flex-col space-y-2  items-center portrait:text-center w-full">
+<h1 className='landscape:text-[3vw] portrait:text-[6vw] bg-[#283b63] w-full h-[6vw] text-center mb-[6vw]'>Evidence-Based Medicines Research & Pharmacovigilance Training</h1>
+<p className='landscape:text-[2vw] portrait:text-[3vw] text-[#283b63]'>1-3 July 2025</p>
+<p className='landscape:text-[2vw] portrait:text-[3vw] text-[#283b63]'>Lagos, Nigeria</p>
 <Link href='/registration' className='landscape:w-[10vw] portrait:w-[40vw] text-center hover:bg-[#959fb6] landscape:text-[1.3vw] portrait:text-[6vw] py-2 cursor-pointer portrait:my-2 mt-[2vw] bg-[#CED8ED] text-[#0d1424] rounded-sm'>Register Now</Link>
 
 </div>
