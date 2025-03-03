@@ -23,12 +23,11 @@ className='flex justify-center pt-[0vw]  h-[60vh]  text-[#b8c2d8] rounded-sm por
 <Link href='/registration' className='landscape:w-[10vw] portrait:w-[40vw] text-center hover:bg-[#959fb6] landscape:text-[1.3vw] portrait:text-[6vw] py-2 cursor-pointer portrait:my-2 mt-[2vw] bg-[#CED8ED] text-[#0d1424] rounded-sm'>Register Now</Link>
 
 </div>
-
 </header>
 {/* why attend */}
 <section className='text-[#3b4a6e] flex flex-col items-center landscape:text-[1.2vw] portrait:text-center mt-[4vw] '>
 <h3 className='landscape:text-[1.6vw] mb-4'>Why Attend?</h3>
-<p className='mb-[2vw]'>This Evidence-Based Medicines Research and Pharmacovigilance Training offers a comprehensive and hands-on learning experience inthe rapidly evolving fields of medicine research and pharmacovigilance. It provides an excellent opportunity for professionals to stayinformed about study design, ethical considerations, patient safety, and regulatory practices. Led by experts, the program explores medicine research and pharmacovigilance principles and practices. 
+<p className='mb-[2vw]'>This Evidence-Based Medicines Research and Pharmacovigilance Training offers a comprehensive and hands-on learning experience in the rapidly evolving fields of medicine research and pharmacovigilance. It provides an excellent opportunity for professionals to stay informed about study design, ethical considerations, patient safety, and regulatory practices. Led by experts, the program explores medicine research and pharmacovigilance principles and practices. 
 </p>
 <p className='mb-[2vw]'>Participants will gain insights into adverse event reporting,medication errors, and safety monitoring for vaccines, biologics, and herbal medicines. The training also covers practical projectmanagement and publication writing skills, including the use of AI. A key feature of this training is the roundtable discussion onmedicines research in Africa, where professionals will share insights, lessons learned, and future directions. 
 
