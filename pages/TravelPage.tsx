@@ -43,7 +43,7 @@ export default function TravelPage() {
           </p>
 
           {/* Map Section with Loading Spinner */}
-          <div className='w-full h-[50vh] relative mt-8'>
+          <div className='w-full h-[50vh] portrait:h-[120vw] relative mt-8'>
             {!mapLoaded && (
               <div className='absolute inset-0 flex items-center justify-center bg-white z-10'>
                 <div className='animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600'></div>

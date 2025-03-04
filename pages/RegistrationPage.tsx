@@ -261,56 +261,60 @@ const RegistrationPage: React.FC = () => {
       </p>
 
       {!showForm && (
-        <div className="mx-auto max-w-md space-y-4"><br />
-          <div>
-            <label htmlFor="email-proceed" className="block text-[1vw] portrait:text-[2.1vw] font-medium text-gray-500">
-              Enter your email to proceed:
-            </label>
-            <div className="mt-1">
-              <input
-                type="email"
-                name="email-proceed"
-                id="email-proceed"
-                value={userEmail}
-                onChange={(e) => setUserEmail(e.target.value)}
-                required
-                className=" block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={handleProceed}
-            disabled={loading}
-            className="w-full cursor-pointer flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            {loading ? (
-              <svg
-                className="animate-spin h-5 w-5 text-white mr-2"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8v8H4z"
-                ></path>
-              </svg>
-            ) : (
-              "Proceed to Registration"
-            )}
-          </button>
-        </div>
+  <div className="mx-auto w-full max-w-md space-y-4">
+    <div>
+      <label 
+        htmlFor="email-proceed" 
+        className="block text-sm sm:text-base font-medium text-gray-500"
+      >
+        Enter your email to proceed:
+      </label>
+      <div className="mt-1">
+        <input
+          type="email"
+          name="email-proceed"
+          id="email-proceed"
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
+          required
+          className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
+        />
+      </div>
+    </div>
+    <button
+      type="button"
+      onClick={handleProceed}
+      disabled={loading}
+      className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white text-base bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+    >
+      {loading ? (
+        <svg
+          className="animate-spin h-5 w-5 text-white mr-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8H4z"
+          ></path>
+        </svg>
+      ) : (
+        "Proceed to Registration"
       )}
+    </button>
+  </div>
+)}
+
 
       </div>
 
