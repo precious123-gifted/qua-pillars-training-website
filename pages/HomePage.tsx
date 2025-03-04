@@ -18,8 +18,8 @@ className='flex justify-center mt-2  h-[60vh]  text-[#b8c2d8] rounded-sm portrai
 
 <div className="writeup flex flex-col space-y-2  items-center portrait:text-center w-full">
 <h1 className='landscape:text-[3vw] portrait:text-[6vw] bg-[#283b63] w-full h-[6vw] portrait:h-[30vw] text-center mb-[6vw]'>Evidence-Based Medicines Research & Pharmacovigilance Training</h1>
-<p className='landscape:text-[2vw] portrait:text-[3vw] text-[#283b63]'>1-3 July 2025</p>
-<p className='landscape:text-[2vw] portrait:text-[3vw] text-[#283b63]'>Lagos, Nigeria</p>
+<p className='landscape:text-[2vw] portrait:text-[4vw] text-[#283b63]'>1-3 July 2025</p>
+<p className='landscape:text-[2vw] portrait:text-[4vw] text-[#283b63]'>Lagos, Nigeria</p>
 <Link href='/registration' className='landscape:w-[10vw] portrait:w-[40vw] text-center hover:bg-[#959fb6] landscape:text-[1.3vw] portrait:text-[6vw] py-2 cursor-pointer portrait:my-2 mt-[2vw] bg-[#CED8ED] text-[#0d1424] rounded-sm'>Register Now</Link>
 </div>
 </header> 

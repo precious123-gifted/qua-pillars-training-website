@@ -42,7 +42,7 @@ const RegistrationPage: React.FC = () => {
     dietaryRequest: '',
     isOtherDietaryRequest: false,
     studentId: null,
-    paymentAmount: 10000,
+    paymentAmount: 120000,
   });
 
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -55,7 +55,7 @@ const RegistrationPage: React.FC = () => {
     { value: 'Vegan', label: 'Vegan' },
     { value: 'Gluten-Free', label: 'Gluten-Free' },
     { value: 'Lactose-Free', label: 'Lactose-Free' },
-    { value: 'Pescetarian', label: 'Pescetarian' },
+    
   ];
 
   const validateForm = () => {
@@ -97,11 +97,26 @@ const RegistrationPage: React.FC = () => {
     }
   };
 
-  const [showForm, setShowForm] = useState(false);
   const [userEmail, setUserEmail] = useState('');
+ 
 
   const [loading, setLoading] = useState(false);
   const formRef = useRef<HTMLDivElement | null>(null);
+
+
+  const [showForm, setShowForm] = useState<boolean>(false);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedState = localStorage.getItem("showForm") === "true";
+      setShowForm(savedState);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (showForm) {
+      localStorage.setItem("showForm", "true");
+    }
+  }, [showForm]);
 
   const handleProceed = async () => {
     if (!userEmail) {
@@ -109,7 +124,7 @@ const RegistrationPage: React.FC = () => {
       return;
     }
 
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
       const response = await fetch("/api/notify-proceed", {
@@ -122,7 +137,6 @@ const RegistrationPage: React.FC = () => {
         setShowForm(true);
         toast.success("Proceed successful. Fill out the form below.");
 
-        // Scroll to form after setting state
         setTimeout(() => {
           formRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 100);
@@ -133,7 +147,7 @@ const RegistrationPage: React.FC = () => {
       console.error("Error:", error);
       toast.error("Something went wrong.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -218,13 +232,13 @@ const RegistrationPage: React.FC = () => {
   };
   
   return (
-    <div className="bg-[#dce0ea]  text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <div className="bg-[#e9ebf0]  text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
               
               
               
               
-      <div className="mt-6 w-[50vw] text-[1vw] portrait:text-[2.1vw] text-left text-gray-600 pb-[6vw]">
+      <div className="mt-6 w-[50vw] portrait:w-[95vw] text-[1vw] portrait:text-[4vw] text-left text-gray-600 pb-[6vw]">
       <h3 className="font-semibold">Refund Policy</h3>
       <p>
         Conference fees* <br />
@@ -260,7 +274,7 @@ const RegistrationPage: React.FC = () => {
                 value={userEmail}
                 onChange={(e) => setUserEmail(e.target.value)}
                 required
-                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                className=" block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
           </div>
@@ -451,7 +465,7 @@ const RegistrationPage: React.FC = () => {
                     setFormState((prevState) => ({
                       ...prevState,
                       isStudent: e.target.checked,
-                      paymentAmount: e.target.checked ? 5000 : 10000, // Update the payment amount when the checkbox is toggled
+                      paymentAmount: e.target.checked ? 70000 : 120000, // Update the payment amount when the checkbox is toggled
                     }));
                   }}
                 />
@@ -470,7 +484,9 @@ const RegistrationPage: React.FC = () => {
             {formState.isStudent && (
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Upload Your student ID or any other valid Document
+                <div className="mt-6 text-center text-gray-600">
+          Upload your proof of registration, an official letter of confirmation on an institutional letterhead paper or your degree certificate
+          </div>
                   {formErrors.studentId && <span className="text-red-500"> *</span>}
                 </label>
                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-600 border-dashed rounded-md">
@@ -616,9 +632,7 @@ const RegistrationPage: React.FC = () => {
           </form>
 
           {/* Deadline and Limited Slots */}
-          <div className="mt-6 text-center text-gray-600">
-          Upload your proof of registration, an official letter of confirmation on an institutional letterhead paper or your degree certificate
-          </div>
+         
 
 
         </div>
