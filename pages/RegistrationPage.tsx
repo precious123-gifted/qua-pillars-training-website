@@ -218,13 +218,13 @@ const RegistrationPage: React.FC = () => {
   };
   
   return (
-    <div className="bg-[#dce0ea] text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    <div className="bg-[#dce0ea]  text-[#0d1424] font-[family-name:var(--font-kanit)]  min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
               
               
               
               
-      <div className="mt-6 w-[50vw] text-[1vw] text-left text-gray-600 pb-[6vw]">
+      <div className="mt-6 w-[50vw] text-[1vw] portrait:text-[2.1vw] text-left text-gray-600 pb-[6vw]">
       <h3 className="font-semibold">Refund Policy</h3>
       <p>
         Conference fees* <br />
@@ -249,7 +249,7 @@ const RegistrationPage: React.FC = () => {
       {!showForm && (
         <div className="mx-auto max-w-md space-y-4"><br />
           <div>
-            <label htmlFor="email-proceed" className="block text-[1vw] font-medium text-gray-500">
+            <label htmlFor="email-proceed" className="block text-[1vw] portrait:text-[2.1vw] font-medium text-gray-500">
               Enter your email to proceed:
             </label>
             <div className="mt-1">
