@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { processPaystackPayment } from '../lib/paystack';
-import Link from 'next/link';
 
 // Define interfaces for the state and form errors
 interface FormState {
@@ -49,7 +48,7 @@ const RegistrationPage: React.FC = () => {
   const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const publicKey = "pk_test_39ffa3598618d31a91c17b97d0897ed21ffb7d83";
+  const publicKey = "pk_live_7192e8e16a397a9d25c9924df6d8406b2e5d5422";
 
   const dietaryOptions = [
     { value: 'Vegetarian', label: 'Vegetarian' },
@@ -101,28 +100,40 @@ const RegistrationPage: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [userEmail, setUserEmail] = useState('');
 
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLDivElement | null>(null);
+
   const handleProceed = async () => {
     if (!userEmail) {
-      toast.error('Please enter your email');
+      toast.error("Please enter your email");
       return;
     }
-  
+
+    setLoading(true); // Start loading
+
     try {
-      const response = await fetch('/api/notify-proceed', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("/api/notify-proceed", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail }),
       });
-  
+
       if (response.ok) {
         setShowForm(true);
-        toast.success('Proceed successful. Fill out the form below.');
+        toast.success("Proceed successful. Fill out the form below.");
+
+        // Scroll to form after setting state
+        setTimeout(() => {
+          formRef.current?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        toast.error("Failed to proceed. Try again.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      toast.error('Failed to send email. Check your input and try again.');
+      console.error("Error:", error);
+      toast.error("Something went wrong.");
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -213,59 +224,85 @@ const RegistrationPage: React.FC = () => {
               
               
               
-                {/* Refund Policy */}
-                <div className="mt-6 w-[50vw] text-[1vw] text-left text-gray-600 pb-[6vw]">
-            <h3 className="font-semibold">Refund Policy</h3>
-            <p>
-            Conference fees*	<br />
-Regular: NGN 120 000 <br />
-Student: NGN 70 000 <br />
-<br />
+      <div className="mt-6 w-[50vw] text-[1vw] text-left text-gray-600 pb-[6vw]">
+      <h3 className="font-semibold">Refund Policy</h3>
+      <p>
+        Conference fees* <br />
+        Regular: NGN 120 000 <br />
+        Student: NGN 70 000 <br />
+        <br />
+        Registration includes access to training halls, food functions, and training materials. <br />
+        <br />
+        *Register before 30 April 2025 to get a 10% discount <br />
+        <br />
+        <b>Payment Methods Accepted</b> <br />
+        Credit card (Visa, Mastercard, Discover, American Express) Bank transfer; click here for bank information All registration fees are in NGN. <br /> <br />
+        <a href="https://www.xe.com/currencyconverter/convert/?Amount=120000&From=NGN&To=USD" className="underline">
+          Click here for conversion rates
+        </a>
+        <br />
+        <br />
+        <b>Cancellation/Refund</b> <br />
+        Cancellation requests must be sent to enquires@qphrf.org. If received by 30 April 2025, a full refund minus NGN 18 000 admin fee will be issued. Cancellations after this date will not be refunded.
+      </p>
 
-Registration includes access to training halls, food functions, and training materials, <br />
-<br />
-*Register before 30 April 2025 to get a 10% discount <br />
-<br />
-<b>Payment Methods Accepted</b> <br />
-Credit card (Visa, Mastercard, Discover, American Express)
-Bank transfer; click here for bank information
-All registration fees are in the local currency (NGN); <br /> <br /> <Link rel="stylesheet" href="https://www.xe.com/currencyconverter/convert/?Amount=120000&From=NGN&To=USD" className='underline'>click here for conversion rates</Link><br /><br />
-
-Cancellation/Refund 
-Cancellation requests must be sent to enquires@qphrf.org. If cancellations are received by the 30 April 2025, a full refund, minus NGN 18 000 admin fee, will be issued. Cancellations made after 30 April 2025 will not be refunded.
-            </p>
-            {!showForm && (
-  <div className="mx-auto max-w-md space-y-4">
-    <div>
-      <label htmlFor="email-proceed" className="block text-sm font-medium text-gray-700">
-        Enter your email to proceed:
-      </label>
-      <div className="mt-1">
-        <input
-          type="email"
-          name="email-proceed"
-          id="email-proceed"
-          value={userEmail}
-          onChange={(e) => setUserEmail(e.target.value)}
-          required
-          className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-        />
-      </div>
-    </div>
-    <button
-      type="button"
-      onClick={handleProceed}
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-    >
-      Proceed to Registration
-    </button>
-  </div>
-)}
+      {!showForm && (
+        <div className="mx-auto max-w-md space-y-4"><br />
+          <div>
+            <label htmlFor="email-proceed" className="block text-[1vw] font-medium text-gray-500">
+              Enter your email to proceed:
+            </label>
+            <div className="mt-1">
+              <input
+                type="email"
+                name="email-proceed"
+                id="email-proceed"
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
+                required
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
           </div>
+          <button
+            type="button"
+            onClick={handleProceed}
+            disabled={loading}
+            className="w-full cursor-pointer flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            {loading ? (
+              <svg
+                className="animate-spin h-5 w-5 text-white mr-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8v8H4z"
+                ></path>
+              </svg>
+            ) : (
+              "Proceed to Registration"
+            )}
+          </button>
+        </div>
+      )}
+
+      </div>
 
           
           {showForm && (
-      <div className="max-w-3xl mx-auto  rounded-lg shadow-xl overflow-hidden">
+      <div ref={formRef} className="max-w-3xl mx-auto  rounded-lg shadow-xl overflow-hidden">
         
         <div className=" py-4 px-6 border-b border-gray-200">
           <h2 className="text-2xl font-semibold text-[#3b4a6e] ">Register now</h2>
