@@ -277,7 +277,7 @@ const RegistrationPage: React.FC = () => {
           value={userEmail}
           onChange={(e) => setUserEmail(e.target.value)}
           required
-          className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 appearance-none"
+          className="block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 appearance-none"
         />
       </div>
     </div>
@@ -285,7 +285,7 @@ const RegistrationPage: React.FC = () => {
       type="button"
       onClick={handleProceed}
       disabled={loading}
-      className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white text-base bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+      className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white text-base bg-[#332896]  hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500  disabled:opacity-50"
     >
       {loading ? (
         <svg
@@ -338,7 +338,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="firstName"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.firstName ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.firstName ? 'border-red-500' : ''}`}
                   value={formState.firstName}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, firstName: e.target.value }))}
                 />
@@ -356,7 +356,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="lastName"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.lastName ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.lastName ? 'border-red-500' : ''}`}
                   value={formState.lastName}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, lastName: e.target.value }))}
                 />
@@ -373,7 +373,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="company"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.company ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.company ? 'border-red-500' : ''}`}
                   value={formState.company}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, company: e.target.value }))}
                 />
@@ -391,7 +391,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="text"
                   id="countryCity"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.countryCity ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.countryCity ? 'border-red-500' : ''}`}
                   value={formState.countryCity}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, countryCity: e.target.value }))}
                 />
@@ -409,7 +409,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="email"
                   id="email"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.email ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 bg-[#dfe4eb]  focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.email ? 'border-red-500' : ''}`}
                   value={formState.email}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, email: e.target.value }))}
                 />
@@ -427,7 +427,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   type="tel"
                   id="phone"
-                  className={`shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.phone ? 'border-red-500' : ''}`}
+                  className={`shadow-sm focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md ${formErrors.phone ? 'border-red-500' : ''}`}
                   value={formState.phone}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, phone: e.target.value }))}
                 />
@@ -443,7 +443,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   id="refundPolicy"
                   type="checkbox"
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600 rounded"
+                  className="focus:ring-indigo-500 bg-[#dfe4eb] h-4 w-4 text-indigo-600 border-gray-600 rounded"
                   checked={formState.refundPolicy}
                   onChange={(e) => setFormState((prevState) => ({ ...prevState, refundPolicy: e.target.checked }))}
                 />
@@ -463,7 +463,7 @@ const RegistrationPage: React.FC = () => {
                 <input
                   id="student"
                   type="checkbox"
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600 rounded"
+                  className="focus:ring-indigo-500 bg-[#dfe4eb] h-4 w-4 text-indigo-600 border-gray-600 rounded"
                   checked={formState.isStudent}
                   onChange={(e) => {
                     setFormState((prevState) => ({
@@ -549,7 +549,7 @@ const RegistrationPage: React.FC = () => {
                             isOtherDietaryRequest: false, // Reset "Others" checkbox
                           }))
                         }
-                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600"
+                        className="focus:ring-indigo-500 bg-[#dfe4eb] h-4 w-4 text-indigo-600 border-gray-600"
                       />
                       <label htmlFor={option.value} className="ml-2 text-sm text-gray-700">
                         {option.label}
@@ -569,7 +569,7 @@ const RegistrationPage: React.FC = () => {
                           dietaryRequest: e.target.checked ? '' : formState.dietaryRequest, // Clear dietaryRequest if "Others" is unchecked
                         }))
                       }
-                      className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-600 rounded"
+                      className="focus:ring-indigo-500 bg-[#dfe4eb] h-4 w-4 text-indigo-600 border-gray-600 rounded"
                     />
                     <label htmlFor="otherDietaryRequest" className="ml-2 text-sm text-gray-700">
                       Others
@@ -582,7 +582,7 @@ const RegistrationPage: React.FC = () => {
                     <textarea
                       id="customDietaryRequest"
                       rows={3}
-                      className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md"
+                      className="shadow-sm focus:ring-indigo-500 bg-[#dfe4eb] focus:border-indigo-500 block w-full sm:text-sm border-gray-600 rounded-md"
                       value={formState.dietaryRequest}
                       onChange={(e) =>
                         setFormState((prevState) => ({
@@ -629,7 +629,7 @@ const RegistrationPage: React.FC = () => {
                 onClose={() => {
                   toast.warn('Payment window closed.');
                 }}
-                className="w-full sm:w-auto flex justify-center cursor-pointer py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full sm:w-auto flex justify-center cursor-pointer py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white  hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 bg-[#332896]"
                 disabled={isButtonDisabled} // Disable button based on form validity
               />
             </div>
