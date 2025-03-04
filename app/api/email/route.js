@@ -19,12 +19,12 @@ export async function POST(request) {
     subject: 'New Registration Form Submission', // Email subject
     html: `
       <h1>New Registration Form Submission</h1>
+      <p><strong>First Name:</strong> ${formData.firstName}</p>
+      <p><strong>Last Name:</strong> ${formData.lastName}</p>
       <p><strong>Company:</strong> ${formData.company}</p>
       <p><strong>Country/City:</strong> ${formData.countryCity}</p>
       <p><strong>Email:</strong> ${formData.email}</p>
       <p><strong>Phone:</strong> ${formData.phone}</p>
-      <p><strong>First Name:</strong> ${formData.firstName}</p>
-      <p><strong>Last Name:</strong> ${formData.lastName}</p>
       <p><strong>Is Student:</strong> ${formData.isStudent ? 'Yes' : 'No'}</p>
       <p><strong>Dietary Request:</strong> ${formData.dietaryRequest}</p>
       <p><strong>Payment Amount:</strong> NGN ${formData.paymentAmount.toLocaleString()}</p>
