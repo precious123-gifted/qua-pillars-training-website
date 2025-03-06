@@ -1,38 +1,54 @@
 import nodemailer from 'nodemailer';
 
-// Define the POST method explicitly as a named export
-export async function POST(request) {
-  const { email } = await request.json(); // Extract email from the request body
-
-  // Configure the email transporter
-  const transporter = nodemailer.createTransport({
-    service: 'gmail', // Use your email service (e.g., Gmail, Outlook, etc.)
-    auth: {
-      user: process.env.NEXT_PUBLIC_EMAIL_USER, // Your email address
-      pass: process.env.NEXT_PRIVATE_EMAIL_PASSWORD, // Your email password or app-specific password
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': 'https://qphrf.org',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
     },
   });
+}
 
-  // Prepare the email content
-  const mailOptions = {
-    from: process.env.NEXT_PUBLIC_EMAIL_USER, // Sender email
-    to: 'enquires@qphrf.org', // Enquiry email
-    subject: 'User Clicked Proceed Button', // Email subject
-    html: `Email: ${email}`, // Email content
+export async function POST(request) {
+  // Define CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': 'https://qphrf.org',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
   };
 
   try {
-    // Send the email
+    const { email } = await request.json(); // Extract email from the request body
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.NEXT_PUBLIC_EMAIL_USER,
+        pass: process.env.NEXT_PRIVATE_EMAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.NEXT_PUBLIC_EMAIL_USER,
+      to: 'enquires@qphrf.org',
+      subject: 'User Clicked Proceed Button',
+      html: `<p>Email: ${email}</p>`,
+    };
+
     await transporter.sendMail(mailOptions);
+
     return new Response(JSON.stringify({ message: 'Email sent successfully!' }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     });
   } catch (error) {
     console.error('Error sending email:', error);
     return new Response(JSON.stringify({ message: 'Failed to send email.' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
     });
   }
 }
