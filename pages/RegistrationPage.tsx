@@ -5,6 +5,11 @@ import dynamic from 'next/dynamic';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { processPaystackPayment } from '../lib/paystack';
+import Image from 'next/image';
+import visaLogo from '../public/visa-logo.png'
+import masterLogo from '../public/mastercard-logo.png'
+import americanELogo from '../public/american-express-logo.png'
+import discoveringLogo from '../public/dicsover-logo.png'
 
 // Define interfaces for the state and form errors
 interface FormState {
@@ -127,7 +132,7 @@ const RegistrationPage: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/notify-proceed", {
+      const response = await fetch("https://qua-pillars-training-website.vercel.app/api/notify-proceed", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: userEmail }),
@@ -198,7 +203,7 @@ const RegistrationPage: React.FC = () => {
         console.log('Payment successful!', paymentResponse);
   
         // Send form data to the API route after successful payment
-        const emailResponse = await fetch('/api/email', {
+        const emailResponse = await fetch('https://qua-pillars-training-website.vercel.app/api/email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -239,7 +244,6 @@ const RegistrationPage: React.FC = () => {
               
               
       <div className="mt-6 w-[50vw] portrait:w-[95vw] text-[1vw] portrait:text-[4vw] text-left text-gray-600 pb-[6vw]">
-      <h3 className="font-semibold">Refund Policy</h3>
       <p>
         Conference fees* <br />
         Regular: NGN 120 000 <br />
@@ -250,7 +254,12 @@ const RegistrationPage: React.FC = () => {
         *Register before 30 April 2025 to get a 10% discount <br />
         <br />
         <b>Payment Methods Accepted</b> <br />
-        Credit card (Visa, Mastercard, Discover, American Express) Bank transfer; click here for bank information All registration fees are in NGN. <br /> <br />
+        Credit card: <br /> <br />  <div className="icons grid grid-cols-2 gap-2 gap-y-7 md:grid-cols-4">
+      <Image src={visaLogo} alt="Visa Logo" className="w-[6vw] portrait:w-[14vw]" />
+      <Image src={masterLogo} alt="Mastercard Logo" className="w-[6vw] portrait:w-[14vw]" />
+      <Image src={discoveringLogo} alt="Discover Logo" className="w-[6vw] portrait:w-[14vw]" />
+      <Image src={americanELogo} alt="American Express Logo" className="w-[6vw] portrait:w-[14vw]" />
+    </div> <br />All registration fees are in NGN. <br /> <br />
         <a href="https://www.xe.com/currencyconverter/convert/?Amount=120000&From=NGN&To=USD" className="underline">
           Click here for conversion rates
         </a>
